@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+uploads
+data
+admin_archive
+.DS_Store
+.env

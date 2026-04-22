@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#667eea" />
+  <link rel="manifest" href="manifest.json" />
+  <title>Tupi DRRM Mobile</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Tupi Emergency Mobile</h1>
+    <p>Fast reports, GPS tracking, media uploads, and AI assistance.</p>
+  </header>
+
+  <main>
+    <!-- Quick Actions Dashboard -->
+    <section class="block dashboard">
+      <h2>Quick Actions</h2>
+      <div class="dashboard-grid">
+        <button class="action-btn" id="quickReport">
+          <span class="icon">📝</span>
+          Quick Report
+        </button>
+        <button class="action-btn" id="openChat">
+          <span class="icon">🤖</span>
+          AI Chatbot
+        </button>
+        <button class="action-btn" id="emergencyCall">
+          <span class="icon">📞</span>
+          Emergency Call
+        </button>
+        <button class="action-btn" id="fileSend">
+          <span class="icon">📎</span>
+          Send Files
+        </button>
+        <button class="action-btn" id="startRecorder">
+          <span class="icon">🎥</span>
+          Quick Record
+        </button>
+        <button class="action-btn" id="getLocation">
+          <span class="icon">📍</span>
+          Get GPS
+        </button>
+      </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section class="block" id="chatSection" style="display: block;">
+      <h2>Emergency AI Chatbot</h2>
+      <div id="chatContainer" class="chat">
+        <div id="chatLog" class="chat-log"></div>
+        <textarea id="chatInput" rows="2" placeholder="Ask for emergency instructions..."></textarea>
+        <button id="sendChat">Send</button>
+      </div>
+    </section>
+
+    <!-- File Send Section -->
+    <section class="block" id="fileSection" style="display: none;">
+      <h2>Send Media Files</h2>
+      <form id="fileForm">
+        <label>Media Files</label>
+        <input id="mediaFiles" name="mediaFiles" type="file" accept="image/*,video/*,audio/*" multiple />
+        <label>Description</label>
+        <textarea id="fileDescription" name="description" rows="3" placeholder="Describe the files..."></textarea>
+        <button type="submit">Send Files</button>
+      </form>
+      <div id="fileStatus" class="status"></div>
+    </section>
+
+    <!-- Full Report Form -->
+    <section class="block" id="reportSection" style="display: none;">
+      <h2>Full Incident Report</h2>
+      <form id="reportForm">
+        <label>Role</label>
+        <select id="role" name="role">
+          <option>Citizen</option>
+          <option>Barangay</option>
+        </select>
+
+        <label>Barangay</label>
+        <input id="brgy" name="brgy" placeholder="Brgy name" />
+
+        <label>Incident Type</label>
+        <select id="incidentType" name="incidentType">
+          <option>Earthquake</option>
+          <option>Stealing/Theft</option>
+          <option>Car crash</option>
+          <option>Murders</option>
+          <option>Hit-and-run</option>
+          <option>Hijacking</option>
+          <option>Other</option>
+        </select>
+
+        <label>Severity</label>
+        <select id="severity" name="severity">
+          <option value="Grey">Grey - Neutral</option>
+          <option value="Green">Green - Minor</option>
+          <option value="Yellow">Yellow - Moderate</option>
+          <option value="Red">Red - Emergency</option>
+          <option value="Black">Black - Very severe</option>
+        </select>
+
+        <label>Description</label>
+        <textarea id="description" name="description" rows="4" placeholder="Describe..."></textarea>
+
+        <label>Victim Info</label>
+        <textarea id="victimInfo" name="victimInfo" rows="3" placeholder="Victim details..."></textarea>
+
+        <label>Location Notes</label>
+        <textarea id="locationNotes" name="locationNotes" rows="2" placeholder="Landmarks..."></textarea>
+
+        <div class="grid-row">
+          <div>
+            <label>Latitude</label>
+            <input id="latitude" name="latitude" placeholder="GPS latitude" readonly />
+          </div>
+          <div>
+            <label>Longitude</label>
+            <input id="longitude" name="longitude" placeholder="GPS longitude" readonly />
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="submit">Submit Report</button>
+        </div>
+        <div id="reportStatus" class="status"></div>
+      </form>
+    </section>
+
+    <!-- Quick Recorder -->
+    <section class="block" id="recorderSection" style="display: none;">
+      <h2>Quick Emergency Recorder</h2>
+      <div class="button-row">
+        <button id="stopRecorder" disabled>Stop Recording</button>
+      </div>
+      <video id="recordedVideo" controls class="video-preview"></video>
+      <div id="recordingStatus" class="status"></div>
+    </section>
+
+    <!-- Brgy Logs -->
+    <section class="block" id="brgySection" style="display: none;">
+      <h2>Barangay Logs</h2>
+      <label>Enter Barangay</label>
+      <input id="brgyInput" placeholder="Barangay name" />
+      <button id="loadBrgyLogs">Load Logs</button>
+      <div id="brgyLogs"></div>
+    </section>
+
+    <section class="block">
+      <h2>Admin Dashboard</h2>
+      <p><a href="admin.html" target="_blank">Open admin dashboard</a></p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

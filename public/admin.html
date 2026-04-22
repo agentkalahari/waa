@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tupi Admin Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 30px;
+    }
+    .incident-list {
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    @media (max-width: 1024px) {
+      .dashboard-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tupi DRRM Admin Dashboard</h1>
+    <p>Monitor and manage incidents with real-time updates and detailed logging.</p>
+  </header>
+
+  <main>
+    <div class="dashboard-layout">
+      <section class="block">
+        <h2>Incident Map</h2>
+        <div id="map" class="map"></div>
+      </section>
+
+      <section class="block">
+        <h2>Incident List</h2>
+        <div id="incidentList" class="incident-list"></div>
+      </section>
+    </div>
+
+    <section class="block">
+      <h2>Incident Details & Management</h2>
+      <div id="incidentPanel" class="incident-panel hidden">
+        <div id="incidentInfo"></div>
+        <form id="adminLogForm">
+          <input type="hidden" id="incidentId" />
+          <label>Admin Name</label>
+          <input id="adminName" placeholder="Your name" />
+          <label>Update Severity</label>
+          <select id="adminSeverity">
+            <option value="Grey">Grey - Neutral / Not yet assessed</option>
+            <option value="Green">Green - Minor</option>
+            <option value="Yellow">Yellow - Moderate but risky</option>
+            <option value="Red">Red - Emergency needs immediate attention</option>
+            <option value="Black">Black - Very severe, multiple victims</option>
+          </select>
+          <label>Update Status</label>
+          <select id="adminStatus">
+            <option>Not yet assessed</option>
+            <option>Under review</option>
+            <option>Deployed</option>
+            <option>Escalated</option>
+            <option>Resolved</option>
+          </select>
+          <label>Log Note</label>
+          <textarea id="adminNote" rows="4" placeholder="Add detailed notes about the incident response..."></textarea>
+          <div class="button-row">
+            <button type="submit">Add Admin Log</button>
+            <button type="button" id="deleteIncident">Delete Incident</button>
+          </div>
+        </form>
+        <div id="adminStatusMessage" class="status"></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Evidence Archive</h2>
+      <div class="archive-panel">
+        <div class="archive-actions">
+          <button id="refreshArchive">Refresh Archive</button>
+        </div>
+        <div id="archiveTree" class="archive-tree"></div>
+        <div id="archiveContent" class="archive-content status">Select a file to preview its contents.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="admin.js?v=2"></script>
+</body>
+</html>
